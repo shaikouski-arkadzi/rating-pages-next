@@ -21,6 +21,9 @@ export default [
         ...globals.node,
       },
     },
+    extends: [
+      'plugin:prettier/recommended'
+    ],
     plugins: {
       '@typescript-eslint': tseslint,
       '@next/next': nextPlugin,
@@ -43,13 +46,10 @@ export default [
         "maxEOF": 0,
         "maxBOF": 0
       }],
-      'react/jsx-indent': ["error", 2],
-      'react/jsx-indent-props': ["error", 2],
       'react/jsx-curly-spacing': ["error", {
         "when": "always",
         "children": true
       }],
-      'object-curly-spacing': ["error", "always"]
     },
     settings: {
       react: {
