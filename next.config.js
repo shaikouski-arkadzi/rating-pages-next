@@ -1,7 +1,16 @@
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  // swcMinify: true,
-}
+  turbopack: {},
 
-module.exports = nextConfig
+  webpack(config) {
+    // Добавляем SVGR
+    config.module.rules.push({
+      test: /\.svg$/i,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  },
+};
+
+module.exports = nextConfig;
