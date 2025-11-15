@@ -1,4 +1,4 @@
-import { Button, Htag } from "../components";
+import { Button, Htag, P } from "../components";
 
 export default function Home() {
   return (
@@ -10,6 +10,9 @@ export default function Home() {
       <Button appearance="ghost" arrow="down">
         Кнопка
       </Button>
+      <P size="l">Большой</P>
+      <P>Средний</P>
+      <P size="s">Маленький</P>
     </>
   );
 }
