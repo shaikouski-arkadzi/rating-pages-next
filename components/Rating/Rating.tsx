@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from "react";
+import { JSX, KeyboardEvent, useEffect, useState } from "react";
 import { RatingProps } from "./Rating.props";
 import StarIcon from "./star.svg";
 import cn from "classnames";
@@ -20,23 +20,55 @@ export const Rating = ({
 
   const constructRating = (currentRating: number) => {
     const updatedArray = ratingArray.map(
-      (rating: JSX.Element, index: number) => {
+      (ratingElement: JSX.Element, ind: number) => {
         return (
-          <StarIcon
+          <span
             className={cn(styles.star, {
-              [styles.filled]: index < currentRating,
+              [styles.filled]: ind < currentRating,
+              [styles.editable]: isEditable,
             })}
-          />
+            onMouseEnter={() => changeDisplay(ind + 1)}
+            onMouseLeave={() => changeDisplay(rating)}
+            onClick={() => onClick(ind + 1)}
+          >
+            <StarIcon
+              tabIndex={isEditable ? 0 : -1}
+              onKeyDown={(e: KeyboardEvent<SVGElement>) =>
+                isEditable && handleSpace(ind + 1, e)
+              }
+            />
+          </span>
         );
       },
     );
     setRatingArray(updatedArray);
   };
 
+  const changeDisplay = (index: number) => {
+    if (!isEditable) {
+      return;
+    }
+    constructRating(index);
+  };
+
+  const onClick = (index: number) => {
+    if (!isEditable || !setRating) {
+      return;
+    }
+    setRating(index);
+  };
+
+  const handleSpace = (index: number, e: KeyboardEvent<SVGElement>) => {
+    if (e.code != "Space" || !setRating) {
+      return;
+    }
+    setRating(index);
+  };
+
   return (
     <div {...props}>
-      {ratingArray.map((r, i) => (
-        <span key={i}>{r}</span>
+      {ratingArray.map((ratingElement, ind) => (
+        <span key={ind}>{ratingElement}</span>
       ))}
     </div>
   );
