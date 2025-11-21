@@ -3,6 +3,7 @@ import { LayoutProps } from "./Layout.props";
 import { Footer } from "./Footer/Footer";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Header } from "./Header/Header";
+import { AppContextProvider, IAppContext } from "../context/app.context";
 import styles from "./Layout.module.css";
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
@@ -16,14 +17,16 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   );
 };
 
-export const withLayout = <T extends Record<string, unknown>>(
+export const withLayout = <T extends Record<string, unknown> & IAppContext>(
   Component: FunctionComponent<T>,
 ) => {
   return function withLayoutComponent(props: T): JSX.Element {
     return (
-      <Layout>
-        <Component {...props} />
-      </Layout>
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      </AppContextProvider>
     );
   };
 };
