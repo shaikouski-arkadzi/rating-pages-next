@@ -1,0 +1,18 @@
+.thirdLevel {
+  display: block;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  color: var(--gray-dark);
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.36;
+}
+
+.thirdLevelActive,
+.thirdLevel:hover {
+  color: var(--primary);
+}
