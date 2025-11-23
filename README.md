@@ -2,7 +2,7 @@
 
     // Для статической генерации
     function getStaticProps() {}
-    function getStaticProps() {}
+    function getStaticPath() {}
     
     // Для SSR
     function getServerSideProps() {}
@@ -132,3 +132,21 @@
 
 ---
 
+## Link
+
+    export declare type LinkProps = {
+        href: Url; // Путь куда навигировать
+        as?: Url; // Путь для отображения в браузере
+        replace?: boolean; // Заменяет текущий элемент history
+        scroll?: boolean; // Скроллить ли страницу дл верха
+        shallow?: boolean; // Запускать ли getServerSideProps, getStaticProps, getStaticPath
+        passHref?: boolean; // Прокидывать href до child
+        prefetch?: boolean; // Предзагрузка данных страницы
+    }
+
+    href={{ // href props as object
+        pathname: '/search',
+        query: {q:'test'}
+    }}
+
+---
