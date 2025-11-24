@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import cn from "classnames";
+import Link from "next/link";
 import { PageItem } from "../../interfaces/menu.interface";
 import styles from "./ThirdLevelMenu.module.css";
 
@@ -13,7 +14,7 @@ export function ThirdLevelMenu({
   return (
     <>
       {pages.map((p) => (
-        <a
+        <Link
           href={`/${route}/${p.alias}`}
           className={cn(styles.thirdLevel, {
             [styles.thirdLevelActive]: false,
@@ -21,7 +22,7 @@ export function ThirdLevelMenu({
           key={p.category}
         >
           {p.category}
-        </a>
+        </Link>
       ))}
     </>
   );

@@ -1,5 +1,6 @@
 import { JSX, useContext } from "react";
 import cn from "classnames";
+import Link from "next/link";
 import { FirstLevelMenuItem } from "../../interfaces/menu.interface";
 import { AppContext } from "../../context/app.context";
 import { SecondLevelMenu } from "../SecondLevelMenu/SecondLevelMenu";
@@ -16,7 +17,7 @@ export function FirstLevelMenu({
     <>
       {firstLevelMenu.map((m) => (
         <div key={m.route}>
-          <a href={`/${m.route}`}>
+          <Link href={`/${m.route}`}>
             <div
               className={cn(styles.firstLevel, {
                 [styles.firstLevelActive]: m.id == firstCategory,
@@ -25,7 +26,7 @@ export function FirstLevelMenu({
               {m.icon}
               <span>{m.name}</span>
             </div>
-          </a>
+          </Link>
           {m.id == firstCategory && <SecondLevelMenu menuItem={m} />}
         </div>
       ))}
