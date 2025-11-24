@@ -1,16 +1,12 @@
 import { JSX, useContext } from "react";
 import cn from "classnames";
 import Link from "next/link";
-import { FirstLevelMenuItem } from "../../interfaces/menu.interface";
 import { AppContext } from "../../context/app.context";
 import { SecondLevelMenu } from "../SecondLevelMenu/SecondLevelMenu";
+import { firstLevelMenu } from "../../helpers/helpers";
 import styles from "./FirstLevelMenu.module.css";
 
-export function FirstLevelMenu({
-  firstLevelMenu,
-}: {
-  firstLevelMenu: FirstLevelMenuItem[];
-}): JSX.Element {
+export function FirstLevelMenu(): JSX.Element {
   const { firstCategory } = useContext(AppContext);
 
   return (
