@@ -7,9 +7,21 @@ import { MenuItem } from "../../interfaces/menu.interface";
 import { Category, PageModel } from "../../interfaces/page.interface";
 import { ProductModel } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
+import { CourseComponent } from "../../page-components";
 
-function Course({ menu, page, products }: CourseProps): JSX.Element {
-  return <>{products && products.length}</>;
+function Course({
+  menu,
+  firstCategory,
+  page,
+  products,
+}: CourseProps): JSX.Element {
+  return (
+    <CourseComponent
+      firstCategory={firstCategory}
+      page={page}
+      products={products}
+    />
+  );
 }
 
 export default withLayout(Course);
