@@ -1,1 +1,1 @@
-export * from "./CourseComponent/CourseComponent";
+export * from "./CourseInfo/CourseInfo";
