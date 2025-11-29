@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import { CourseInfoProps } from "./CourseInfo.props";
-import { Htag, Tag, HhData } from "../../components";
+import { Advantages, HhData, Htag, Tag } from "../../components";
 import { Category } from "../../interfaces/page.interface";
 import styles from "./CourseInfo.module.css";
 
@@ -29,7 +29,13 @@ export const CourseInfo = ({
           hh.ru
         </Tag>
       </div>
-      {firstCategory == Category.Courses && <HhData {...page.hh} />}
+      {firstCategory == Category.Courses && page.hh && <HhData {...page.hh} />}
+      {page.advantages && page.advantages.length > 0 && (
+        <>
+          <Htag tag="h2">Преимущства</Htag>
+          <Advantages advantages={page.advantages} />
+        </>
+      )}
     </div>
   );
 };
