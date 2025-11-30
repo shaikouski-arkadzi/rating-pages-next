@@ -1,7 +1,8 @@
 import { JSX } from "react";
 import { CourseInfoProps } from "./CourseInfo.props";
-import { Advantages, HhData, Htag, P, Tag } from "../../components";
+import { Advantages, HhData, Htag, Tag, Sort } from "../../components";
 import { Category } from "../../interfaces/page.interface";
+import { SortEnum } from "../../components/Sort/Sort.props";
 import styles from "./CourseInfo.module.css";
 
 export const CourseInfo = ({
@@ -18,7 +19,7 @@ export const CourseInfo = ({
             {products.length}
           </Tag>
         )}
-        <span>Сортировка</span>
+        <Sort sort={SortEnum.Rating} setSort={() => {}} />
       </div>
       <div>
         {products && products.map((p) => <div key={p._id}>{p.title}</div>)}
