@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import cn from "classnames";
 import { SortEnum, SortProps } from "./Sort.props";
-import SortIcon from "./sort.svg";
+import SortIcon from "../../icons/sort.svg";
 import styles from "./Sort.module.css";
 
 export const Sort = ({

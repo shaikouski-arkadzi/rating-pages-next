@@ -16,7 +16,7 @@
 
 .sort {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   gap: 40px;
 }
 
@@ -26,4 +26,10 @@
   grid-template-columns: 20px 1fr;
 
   align-items: center;
+
+  cursor: pointer;
+}
+
+.sort span:not(.active) {
+  grid-template-columns: 1fr;
 }

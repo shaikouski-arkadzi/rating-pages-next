@@ -1,8 +1,9 @@
-import { JSX } from "react";
+import { JSX, useReducer } from "react";
 import { CourseInfoProps } from "./CourseInfo.props";
 import { Advantages, HhData, Htag, Tag, Sort } from "../../components";
 import { Category } from "../../interfaces/page.interface";
 import { SortEnum } from "../../components/Sort/Sort.props";
+import { sortReducer } from "./sort.reducer";
 import styles from "./CourseInfo.module.css";
 
 export const CourseInfo = ({
@@ -10,6 +11,15 @@ export const CourseInfo = ({
   products,
   firstCategory,
 }: CourseInfoProps): JSX.Element => {
+  const [{ products: sortedProducts, sort }, dispathSort] = useReducer(
+    sortReducer,
+    { products, sort: SortEnum.Rating },
+  );
+
+  const setSort = (sort: SortEnum) => {
+    dispathSort({ type: sort });
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -19,10 +29,11 @@ export const CourseInfo = ({
             {products.length}
           </Tag>
         )}
-        <Sort sort={SortEnum.Rating} setSort={() => {}} />
+        <Sort sort={sort} setSort={setSort} />
       </div>
       <div>
-        {products && products.map((p) => <div key={p._id}>{p.title}</div>)}
+        {sortedProducts &&
+          sortedProducts.map((p) => <div key={p._id}>{p.title}</div>)}
       </div>
       <div className={styles.hhTitle}>
         <Htag tag="h2">Вакансии - {page.category}</Htag>
