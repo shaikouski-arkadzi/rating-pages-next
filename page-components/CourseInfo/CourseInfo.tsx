@@ -1,6 +1,6 @@
 import { JSX, useReducer } from "react";
 import { CourseInfoProps } from "./CourseInfo.props";
-import { Advantages, HhData, Htag, Tag, Sort } from "../../components";
+import { Advantages, HhData, Htag, Product, Sort, Tag } from "../../components";
 import { Category } from "../../interfaces/page.interface";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { sortReducer } from "./sort.reducer";
@@ -33,7 +33,7 @@ export const CourseInfo = ({
       </div>
       <div>
         {sortedProducts &&
-          sortedProducts.map((p) => <div key={p._id}>{p.title}</div>)}
+          sortedProducts.map((p) => <Product key={p._id} product={p} />)}
       </div>
       <div className={styles.hhTitle}>
         <Htag tag="h2">Вакансии - {page.category}</Htag>
