@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import Image from "next/image";
 import { Card } from "../Card/Card";
 import { Rating } from "../Rating/Rating";
 import { Tag } from "../Tag/Tag";
@@ -12,7 +13,7 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
   return (
     <Card className={styles.product}>
       <div className={styles.logo}>
-        <img src={product.image} alt={product.title} />
+        <Image src={product.image} alt={product.title} width={70} height={70} />
       </div>
       <div className={styles.title}>{product.title}</div>
       <div className={styles.price}>
