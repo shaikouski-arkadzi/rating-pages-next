@@ -150,3 +150,21 @@
     }}
 
 ---
+
+## Image
+
+    <Image
+        quality={70} // Качество сжатия
+        priority={false} // Preload изображения
+        src="" // Путь к файлу
+        width={} // Ширина изображения
+        height={} // Высота изображения
+        layout='fixed' // layout
+        objectFit='fill' // Ecли layout fill
+        objectPosition='left center' // Ecли layout fill
+        loading='lazy' // Ленивая загрузка
+        unoptimized={false} // Оптимизация изображений
+        loader={myLoader} // Кастомный загрузчик изображений
+    />
+
+---
