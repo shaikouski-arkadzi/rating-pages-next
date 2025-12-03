@@ -7,6 +7,7 @@ import { Tag } from "../Tag/Tag";
 import { Button } from "../Button/Button";
 import { Divider } from "../Divider/Divider";
 import { Review } from "../Review/Review";
+import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { declOfNum, priceRu } from "../../helpers/helpers";
 import { ProductProps } from "./Product.props";
 import styles from "./Product.module.css";
@@ -99,8 +100,12 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
         })}
       >
         {product.reviews.map((r) => (
-          <Review key={r._id} review={r} />
+          <>
+            <Review key={r._id} review={r} />
+            <Divider />
+          </>
         ))}
+        <ReviewForm productId={product._id} />
       </Card>
     </>
   );
