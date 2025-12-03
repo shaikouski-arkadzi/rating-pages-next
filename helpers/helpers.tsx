@@ -49,3 +49,18 @@ export const declOfNum = (
       : cases[number % 10 < 5 ? number % 10 : 5]
   ];
 };
+
+export const formatDateRu = (dateString: Date) => {
+  const date = new Date(dateString);
+  const parts = new Intl.DateTimeFormat("ru-RU", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).formatToParts(date);
+
+  const day = parts.find((p) => p.type === "day")!.value;
+  const month = parts.find((p) => p.type === "month")!.value;
+  const year = parts.find((p) => p.type === "year")!.value;
+
+  return `${day} ${month} ${year}`;
+};
