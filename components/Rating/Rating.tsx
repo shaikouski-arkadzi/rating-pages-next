@@ -7,13 +7,13 @@ import {
   ForwardedRef,
 } from "react";
 import { RatingProps, RatingItem } from "./Rating.props";
-import StarIcon from "./star.svg";
+import StarIcon from "../../icons/star.svg";
 import cn from "classnames";
 import styles from "./Rating.module.css";
 
 export const Rating = forwardRef(
   (
-    { isEditable = false, rating, setRating, ...props }: RatingProps,
+    { isEditable = false, rating, setRating, error, ...props }: RatingProps,
     ref: ForwardedRef<HTMLDivElement>,
   ): JSX.Element => {
     const INITIAL_ARRAY = new Array(5).fill(null).map((_, ind) => ({
@@ -76,10 +76,17 @@ export const Rating = forwardRef(
     };
 
     return (
-      <div {...props} ref={ref}>
+      <div
+        {...props}
+        ref={ref}
+        className={cn(styles.ratingWrapper, {
+          [styles.error]: error,
+        })}
+      >
         {ratingArray.map((item) => (
           <span key={item.key}>{item.element}</span>
         ))}
+        {error && <span className={styles.errorMessage}>{error.message}</span>}
       </div>
     );
   },
