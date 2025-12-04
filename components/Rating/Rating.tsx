@@ -1,79 +1,86 @@
-import { JSX, KeyboardEvent, useEffect, useState } from "react";
+import {
+  JSX,
+  KeyboardEvent,
+  useEffect,
+  useState,
+  forwardRef,
+  ForwardedRef,
+} from "react";
 import { RatingProps, RatingItem } from "./Rating.props";
 import StarIcon from "./star.svg";
 import cn from "classnames";
 import styles from "./Rating.module.css";
 
-export const Rating = ({
-  isEditable = false,
-  rating,
-  setRating,
-  ...props
-}: RatingProps): JSX.Element => {
-  const INITIAL_ARRAY = new Array(5).fill(null).map((_, ind) => ({
-    key: ind,
-    element: <span key={ind}></span>,
-  }));
-
-  const [ratingArray, setRatingArray] = useState<RatingItem[]>(INITIAL_ARRAY);
-
-  useEffect(() => {
-    constructRating(rating);
-  }, [rating]);
-
-  const constructRating = (currentRating: number) => {
-    const updatedArray = ratingArray.map((item) => ({
-      key: item.key,
-      element: (
-        <span
-          key={item.key}
-          className={cn(styles.star, {
-            [styles.filled]: item.key < currentRating,
-            [styles.editable]: isEditable,
-          })}
-          onMouseEnter={() => changeDisplay(item.key + 1)}
-          onMouseLeave={() => changeDisplay(rating)}
-          onClick={() => onClick(item.key + 1)}
-        >
-          <StarIcon
-            tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGElement>) =>
-              isEditable && handleSpace(item.key + 1, e)
-            }
-          />
-        </span>
-      ),
+export const Rating = forwardRef(
+  (
+    { isEditable = false, rating, setRating, ...props }: RatingProps,
+    ref: ForwardedRef<HTMLDivElement>,
+  ): JSX.Element => {
+    const INITIAL_ARRAY = new Array(5).fill(null).map((_, ind) => ({
+      key: ind,
+      element: <span key={ind}></span>,
     }));
 
-    setRatingArray(updatedArray);
-  };
+    const [ratingArray, setRatingArray] = useState<RatingItem[]>(INITIAL_ARRAY);
 
-  const changeDisplay = (index: number) => {
-    if (!isEditable) {
-      return;
-    }
-    constructRating(index);
-  };
+    useEffect(() => {
+      constructRating(rating);
+    }, [rating]);
 
-  const onClick = (index: number) => {
-    if (!isEditable || !setRating) {
-      return;
-    }
-    setRating(index);
-  };
+    const constructRating = (currentRating: number) => {
+      const updatedArray = ratingArray.map((item) => ({
+        key: item.key,
+        element: (
+          <span
+            key={item.key}
+            className={cn(styles.star, {
+              [styles.filled]: item.key < currentRating,
+              [styles.editable]: isEditable,
+            })}
+            onMouseEnter={() => changeDisplay(item.key + 1)}
+            onMouseLeave={() => changeDisplay(rating)}
+            onClick={() => onClick(item.key + 1)}
+          >
+            <StarIcon
+              tabIndex={isEditable ? 0 : -1}
+              onKeyDown={(e: KeyboardEvent<SVGElement>) =>
+                isEditable && handleSpace(item.key + 1, e)
+              }
+            />
+          </span>
+        ),
+      }));
 
-  const handleSpace = (index: number, e: KeyboardEvent<SVGElement>) => {
-    if (e.code != "Space" || !setRating) {
-      return;
-    }
-    setRating(index);
-  };
+      setRatingArray(updatedArray);
+    };
 
-  return (
-    <div {...props}>
-      {ratingArray.map((item) => (
-        <span key={item.key}>{item.element}</span>
-      ))}
-    </div>
-  );
-};
+    const changeDisplay = (index: number) => {
+      if (!isEditable) {
+        return;
+      }
+      constructRating(index);
+    };
+
+    const onClick = (index: number) => {
+      if (!isEditable || !setRating) {
+        return;
+      }
+      setRating(index);
+    };
+
+    const handleSpace = (index: number, e: KeyboardEvent<SVGElement>) => {
+      if (e.code != "Space" || !setRating) {
+        return;
+      }
+      setRating(index);
+    };
+
+    return (
+      <div {...props} ref={ref}>
+        {ratingArray.map((item) => (
+          <span key={item.key}>{item.element}</span>
+        ))}
+      </div>
+    );
+  },
+);
