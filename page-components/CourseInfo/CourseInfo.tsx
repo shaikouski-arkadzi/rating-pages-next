@@ -1,4 +1,4 @@
-import { JSX, useReducer } from "react";
+import { JSX, useReducer, useEffect } from "react";
 import { CourseInfoProps } from "./CourseInfo.props";
 import { Advantages, HhData, Htag, Product, Sort, Tag } from "../../components";
 import { Category } from "../../interfaces/page.interface";
@@ -19,6 +19,10 @@ export const CourseInfo = ({
   const setSort = (sort: SortEnum) => {
     dispathSort({ type: sort });
   };
+  
+  useEffect(() => {
+    dispathSort({ type: "reset", initialState: products });
+  }, [products]);
 
   return (
     <div className={styles.wrapper}>
