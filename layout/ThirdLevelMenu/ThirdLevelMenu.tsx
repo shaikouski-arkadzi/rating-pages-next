@@ -9,9 +9,11 @@ import styles from "./ThirdLevelMenu.module.css";
 export function ThirdLevelMenu({
   pages,
   route,
+  isOpened,
 }: {
   pages: PageItem[];
   route: string;
+  isOpened: boolean;
 }): JSX.Element {
   const router = useRouter();
 
@@ -28,6 +30,7 @@ export function ThirdLevelMenu({
       {pages.map((p) => (
         <motion.div key={p._id} variants={variantsChildren}>
           <Link
+            tabIndex={isOpened ? 0 : -1}
             href={`/${route}/${p.alias}`}
             className={cn(styles.thirdLevel, {
               [styles.thirdLevelActive]:

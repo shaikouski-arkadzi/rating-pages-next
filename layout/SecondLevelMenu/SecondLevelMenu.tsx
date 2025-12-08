@@ -1,4 +1,4 @@
-import { JSX, useContext } from "react";
+import { JSX, useContext, KeyboardEvent } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
@@ -38,6 +38,13 @@ export function SecondLevelMenu({
       );
   };
 
+  const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
+    if (key.code == "Space" || key.code == "Enter") {
+      key.preventDefault();
+      openSecondLevel(secondCategory);
+    }
+  };
+
   return (
     <div className={styles.secondBlock}>
       {menu.map((m) => {
@@ -53,6 +60,10 @@ export function SecondLevelMenu({
               animate={m.isOpened ? "visible" : "hidden"}
               className={styles.secondLevel}
               onClick={() => openSecondLevel(m._id.secondCategory)}
+              tabIndex={0}
+              onKeyDown={(key: KeyboardEvent) =>
+                openSecondLevelKey(key, m._id.secondCategory)
+              }
             >
               {m._id.secondCategory}
             </motion.div>
@@ -61,7 +72,11 @@ export function SecondLevelMenu({
                 [styles.secondLevelBlockOpened]: m.isOpened,
               })}
             >
-              <ThirdLevelMenu pages={m.pages} route={menuItem.route} />
+              <ThirdLevelMenu
+                pages={m.pages}
+                route={menuItem.route}
+                isOpened={m.isOpened ?? false}
+              />
             </div>
           </div>
         );

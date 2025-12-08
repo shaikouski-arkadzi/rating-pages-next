@@ -6,10 +6,10 @@
   cursor: pointer;
 
   color: var(--gray-dark);
+  outline-offset: -1px;
 
   font-size: 14px;
   font-weight: 500;
-  line-height: 1.36;
 }
 
 .thirdLevelActive,
