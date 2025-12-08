@@ -53,11 +53,7 @@ export function SecondLevelMenu({
         }
         return (
           <div key={m._id.secondCategory}>
-            <motion.div
-              layout
-              variants={variants}
-              initial={m.isOpened ? "visible" : "hidden"}
-              animate={m.isOpened ? "visible" : "hidden"}
+            <div
               className={styles.secondLevel}
               onClick={() => openSecondLevel(m._id.secondCategory)}
               tabIndex={0}
@@ -66,8 +62,12 @@ export function SecondLevelMenu({
               }
             >
               {m._id.secondCategory}
-            </motion.div>
-            <div
+            </div>
+            <motion.div
+              layout
+              variants={variants}
+              initial={m.isOpened ? "visible" : "hidden"}
+              animate={m.isOpened ? "visible" : "hidden"}
               className={cn(styles.secondLevelBlock, {
                 [styles.secondLevelBlockOpened]: m.isOpened,
               })}
@@ -77,7 +77,7 @@ export function SecondLevelMenu({
                 route={menuItem.route}
                 isOpened={m.isOpened ?? false}
               />
-            </div>
+            </motion.div>
           </div>
         );
       })}
