@@ -17,6 +17,7 @@ export const Sort = ({
         className={cn({
           [styles.active]: sort == SortEnum.Rating,
         })}
+        aria-selected={sort == SortEnum.Rating}
       >
         <SortIcon className={styles.sortIcon} />
         По рейтингу
@@ -26,6 +27,7 @@ export const Sort = ({
         className={cn({
           [styles.active]: sort == SortEnum.Price,
         })}
+        aria-selected={sort == SortEnum.Price}
       >
         <SortIcon className={styles.sortIcon} />
         По цене
