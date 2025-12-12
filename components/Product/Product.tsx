@@ -56,7 +56,10 @@ export const Product = motion(
             </div>
             <div className={styles.title}>{product.title}</div>
             <div className={styles.price}>
-              {priceRu(product.price)}
+              <span>
+                <span className="visualyHidden">цена</span>
+                {priceRu(product.price)}
+              </span>
               {product.oldPrice && (
                 <Tag className={styles.oldPrice} color="green">
                   {priceRu(product.price - product.oldPrice)}
@@ -77,7 +80,9 @@ export const Product = motion(
                 </Tag>
               ))}
             </div>
-            <div className={styles.priceTitle}>цена</div>
+            <div className={styles.priceTitle} aria-hidden="true">
+              цена
+            </div>
             <div className={styles.creditTitle}>кредит</div>
             <div className={styles.rateTitle}>
               <a href={"#ref"} onClick={scrollToReview}>
