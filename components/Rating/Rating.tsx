@@ -68,6 +68,11 @@ export const Rating = forwardRef(
             ref={(el) => {
               ratingArrayRef.current[item.key] = el;
             }}
+            aria-label={isEditable ? "Укажите рейтинг" : "рейтинг" + rating}
+            role={isEditable ? "slider" : ""}
+            aria-valuenow={rating}
+            aria-valuemin={1}
+            aria-valuemax={5}
           >
             <StarIcon />
           </span>
