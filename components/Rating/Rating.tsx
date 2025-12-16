@@ -73,6 +73,7 @@ export const Rating = forwardRef(
             aria-valuenow={rating}
             aria-valuemin={1}
             aria-valuemax={5}
+            aria-invalid={!!error}
           >
             <StarIcon />
           </span>
