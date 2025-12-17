@@ -128,7 +128,11 @@ export const Rating = forwardRef(
         {ratingArray.map((item) => (
           <span key={item.key}>{item.element}</span>
         ))}
-        {error && <span className={styles.errorMessage}>{error.message}</span>}
+        {error && (
+          <span role="alert" className={styles.errorMessage}>
+            {error.message}
+          </span>
+        )}
       </div>
     );
   },
