@@ -23,6 +23,7 @@ export const ReviewForm = ({
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm<IReviewForm>();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -110,7 +111,11 @@ export const ReviewForm = ({
           aria-invalid={!!errors.description}
         />
         <div className={styles.submit}>
-          <Button appearance="primary" tabIndex={isOpened ? 0 : -1}>
+          <Button
+            appearance="primary"
+            tabIndex={isOpened ? 0 : -1}
+            onClick={() => clearErrors()}
+          >
             Отправить
           </Button>
           <span className={styles.info}>
