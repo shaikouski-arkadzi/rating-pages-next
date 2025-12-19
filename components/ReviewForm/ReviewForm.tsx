@@ -137,6 +137,18 @@ export const ReviewForm = ({
           </button>
         </div>
       )}
+      {error && (
+        <div className={cn(styles.error, styles.panel)} role="alert">
+          Что-то пошло не так, попробуйте обновить страницу
+          <button
+            onClick={() => setError(undefined)}
+            className={styles.close}
+            aria-label="Закрыть оповещение"
+          >
+            <CloseIcon />
+          </button>
+        </div>
+      )}
     </form>
   );
 };
