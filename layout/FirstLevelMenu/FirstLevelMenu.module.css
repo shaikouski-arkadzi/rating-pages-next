@@ -11,6 +11,10 @@
   gap: 20px;
 }
 
+.firstLevelList {
+  list-style: none;
+}
+
 .firstLevelActive,
 .firstLevel:hover {
   color: var(--primary);

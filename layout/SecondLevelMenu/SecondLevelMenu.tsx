@@ -46,13 +46,13 @@ export function SecondLevelMenu({
   };
 
   return (
-    <div className={styles.secondBlock}>
+    <ul className={styles.secondBlock}>
       {menu.map((m) => {
         if (m.pages.map((p) => p.alias).includes(router.asPath.split("/")[2])) {
           m.isOpened = true;
         }
         return (
-          <div key={m._id.secondCategory}>
+          <li key={m._id.secondCategory}>
             <div
               className={styles.secondLevel}
               onClick={() => openSecondLevel(m._id.secondCategory)}
@@ -63,7 +63,7 @@ export function SecondLevelMenu({
             >
               {m._id.secondCategory}
             </div>
-            <motion.div
+            <motion.ul
               layout
               variants={variants}
               initial={m.isOpened ? "visible" : "hidden"}
@@ -77,10 +77,10 @@ export function SecondLevelMenu({
                 route={menuItem.route}
                 isOpened={m.isOpened ?? false}
               />
-            </motion.div>
-          </div>
+            </motion.ul>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }

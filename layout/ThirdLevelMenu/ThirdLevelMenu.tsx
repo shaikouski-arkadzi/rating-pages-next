@@ -28,7 +28,7 @@ export function ThirdLevelMenu({
   return (
     <>
       {pages.map((p) => (
-        <motion.div key={p._id} variants={variantsChildren}>
+        <motion.li key={p._id} variants={variantsChildren}>
           <Link
             tabIndex={isOpened ? 0 : -1}
             href={`/${route}/${p.alias}`}
@@ -40,7 +40,7 @@ export function ThirdLevelMenu({
           >
             {p.category}
           </Link>
-        </motion.div>
+        </motion.li>
       ))}
     </>
   );

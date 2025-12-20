@@ -10,9 +10,9 @@ export function FirstLevelMenu(): JSX.Element {
   const { firstCategory } = useContext(AppContext);
 
   return (
-    <>
+    <ul className={styles.firstLevelList}>
       {firstLevelMenu.map((m) => (
-        <div key={m.route}>
+        <li key={m.route}>
           <Link href={`/${m.route}`}>
             <div
               className={cn(styles.firstLevel, {
@@ -24,8 +24,8 @@ export function FirstLevelMenu(): JSX.Element {
             </div>
           </Link>
           {m.id == firstCategory && <SecondLevelMenu menuItem={m} />}
-        </div>
+        </li>
       ))}
-    </>
+    </ul>
   );
 }

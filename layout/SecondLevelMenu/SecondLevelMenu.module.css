@@ -16,9 +16,13 @@
   margin-left: 12px;
   padding-left: 32px;
 
+  list-style: none;
+
   border-left: 1px solid #DFDFDF;
 }
 
 .secondLevelBlock {
   overflow: hidden;
+
+  list-style: none;
 }
