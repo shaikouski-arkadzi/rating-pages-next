@@ -12,7 +12,7 @@ export function FirstLevelMenu(): JSX.Element {
   return (
     <ul className={styles.firstLevelList}>
       {firstLevelMenu.map((m) => (
-        <li key={m.route}>
+        <li key={m.route} aria-expanded={m.id == firstCategory}>
           <Link href={`/${m.route}`}>
             <div
               className={cn(styles.firstLevel, {

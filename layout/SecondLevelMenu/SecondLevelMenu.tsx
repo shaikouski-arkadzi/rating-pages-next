@@ -60,6 +60,7 @@ export function SecondLevelMenu({
               onKeyDown={(key: KeyboardEvent) =>
                 openSecondLevelKey(key, m._id.secondCategory)
               }
+              aria-expanded={m.isOpened}
             >
               {m._id.secondCategory}
             </div>
