@@ -2,16 +2,15 @@ import { JSX, useContext, KeyboardEvent } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import { FirstLevelMenuItem } from "../../interfaces/menu.interface";
 import { AppContext } from "../../context/app.context";
 import { ThirdLevelMenu } from "../ThirdLevelMenu/ThirdLevelMenu";
+import { SecondLevelMenuProps } from "./SecondLevelMenu.props";
 import styles from "./SecondLevelMenu.module.css";
 
 export function SecondLevelMenu({
+  setAnnounce,
   menuItem,
-}: {
-  menuItem: FirstLevelMenuItem;
-}): JSX.Element {
+}: SecondLevelMenuProps): JSX.Element {
   const { menu, setMenu } = useContext(AppContext);
   const router = useRouter();
 
@@ -31,6 +30,7 @@ export function SecondLevelMenu({
       setMenu(
         menu.map((m) => {
           if (m._id.secondCategory == secondCategory) {
+            setAnnounce(m.isOpened ? "closed" : "opened");
             m.isOpened = !m.isOpened;
           }
           return m;

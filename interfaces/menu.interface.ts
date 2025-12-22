@@ -24,3 +24,5 @@ export interface FirstLevelMenuItem {
   icon: JSX.Element;
   id: Category;
 }
+
+export type StatusList = "closed" | "opened" | undefined;

@@ -4,9 +4,12 @@ import Link from "next/link";
 import { AppContext } from "../../context/app.context";
 import { SecondLevelMenu } from "../SecondLevelMenu/SecondLevelMenu";
 import { firstLevelMenu } from "../../helpers/helpers";
+import { FirstLevelMenuProps } from "./FirstLevelMenu.props";
 import styles from "./FirstLevelMenu.module.css";
 
-export function FirstLevelMenu(): JSX.Element {
+export function FirstLevelMenu({
+  setAnnounce,
+}: FirstLevelMenuProps): JSX.Element {
   const { firstCategory } = useContext(AppContext);
 
   return (
@@ -23,7 +26,9 @@ export function FirstLevelMenu(): JSX.Element {
               <span>{m.name}</span>
             </div>
           </Link>
-          {m.id == firstCategory && <SecondLevelMenu menuItem={m} />}
+          {m.id == firstCategory && (
+            <SecondLevelMenu setAnnounce={setAnnounce} menuItem={m} />
+          )}
         </li>
       ))}
     </ul>
