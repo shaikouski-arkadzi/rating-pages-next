@@ -37,6 +37,9 @@ export function ThirdLevelMenu({
                 `/${route}/${p.alias}` == router.asPath,
             })}
             key={p.category}
+            aria-current={
+              `/${route}/${p.alias}` == router.asPath ? "page" : false
+            }
           >
             {p.category}
           </Link>
