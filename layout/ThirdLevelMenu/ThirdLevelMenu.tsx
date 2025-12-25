@@ -2,7 +2,7 @@ import { JSX } from "react";
 import cn from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { PageItem } from "../../interfaces/menu.interface";
 import styles from "./ThirdLevelMenu.module.css";
 
@@ -16,13 +16,14 @@ export function ThirdLevelMenu({
   isOpened: boolean;
 }): JSX.Element {
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
 
   const variantsChildren = {
     visible: {
       opacity: 1,
       height: "auto",
     },
-    hidden: { opacity: 0, height: 0 },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, height: 0 },
   };
 
   return (
