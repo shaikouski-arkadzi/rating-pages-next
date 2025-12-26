@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import Head from "next/head";
 import axios from "axios";
 import { ParsedUrlQuery } from "node:querystring";
 import { withLayout } from "../../layout/Layout";
@@ -16,7 +17,20 @@ function Course({
   products,
 }: CourseProps): JSX.Element {
   return (
-    <CourseInfo firstCategory={firstCategory} page={page} products={products} />
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name="description" content={page.metaDescription} />
+        <meta property="og:title" content={page.metaTitle} />
+        <meta property="og:description" content={page.metaDescription} />
+        <meta property="og:type" content="article" />
+      </Head>
+      <CourseInfo
+        firstCategory={firstCategory}
+        page={page}
+        products={products}
+      />
+    </>
   );
 }
 
