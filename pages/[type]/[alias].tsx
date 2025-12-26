@@ -9,6 +9,7 @@ import { Category, PageModel } from "../../interfaces/page.interface";
 import { ProductModel } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
 import { CourseInfo } from "../../page-components";
+import { Error404 } from "../404";
 
 function Course({
   menu,
@@ -16,6 +17,10 @@ function Course({
   page,
   products,
 }: CourseProps): JSX.Element {
+  if (!page || !products) {
+    return <Error404 />;
+  }
+
   return (
     <>
       <Head>
